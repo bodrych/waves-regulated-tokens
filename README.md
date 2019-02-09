@@ -1,2 +1,2 @@
-# regulated-tokens
+# waves-regulated-tokens
 Waves regulated tokens
