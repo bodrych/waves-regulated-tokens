@@ -1,2 +1,0 @@
-let adminPublicKey = base58'AjiJTAnh1zMMUTHYCyrN4XzdpDb9YtU5xe8hD1Su7vSV'
-sigVerify(tx.bodyBytes, tx.proofs[0], adminPublicKey)

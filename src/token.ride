@@ -1,0 +1,26 @@
+{-# STDLIB_VERSION 3 #-}
+{-# CONTENT_TYPE EXPRESSION #-}
+{-# SCRIPT_TYPE ASSET #-}
+
+let dApp = Address(base58'3N72v3ni92ZeJDqvRvxmYvJ69Vvr9ma5Ndn')
+
+match tx {
+    case t:TransferTransaction =>
+        let senderAccepted = match dApp.getBoolean(this.id.toBase58String() + "_" + t.sender.bytes.toBase58String()) {
+            case s:Boolean => s
+            case _ => false
+        }
+        let recipientAccepted = match dApp.getBoolean(this.id.toBase58String() + "_" + t.recipient.addressFromRecipient().bytes.toBase58String()) {
+            case s:Boolean => s
+            case _ => false
+        }
+        senderAccepted && recipientAccepted || t.sender == this.issuer && recipientAccepted || senderAccepted && t.recipient == this.issuer
+    
+    case e:ExchangeTransaction =>
+        let senderAccepted = match dApp.getBoolean(this.id.toBase58String() + "_" + e.sellOrder.sender.bytes.toBase58String()) {
+            case s:Boolean => s
+            case _ => false
+        }
+        senderAccepted || e.sellOrder.sender == this.issuer
+    case _ => true # dev
+}

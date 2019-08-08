@@ -1,0 +1,16 @@
+{-# STDLIB_VERSION 3 #-}
+{-# CONTENT_TYPE DAPP #-}
+{-# SCRIPT_TYPE ACCOUNT #-}
+
+@Callable(i)
+func add(assetId:String, address:String, status:Boolean) = {
+    let aInfo = assetId.fromBase58String().assetInfo().valueOrErrorMessage("There is no asset with specified id")
+    let addrInfo = address.addressFromString().valueOrErrorMessage("Invalid address")
+    if (aInfo.issuer != i.caller) then {
+        throw("You are not asset issuer")
+    } else {
+        WriteSet([
+            DataEntry(assetId + "_" + address, status)
+        ])
+    }
+}
