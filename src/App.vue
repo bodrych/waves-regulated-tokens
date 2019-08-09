@@ -5,7 +5,7 @@
     </el-header>
     <el-main>
       <el-row type="flex" style="flex-basis: 100%; margin-left: 0" :gutter="50">
-        <el-col type="flex" :span="6" style="border-right: 1px solid whitesmoke">
+        <el-col type="flex" :span="6" style="border-right: 1px solid #EBEEF5">
           <span class="subtitle">Issue token</span>
           <el-form ref="issueForm" :model="asset" :rules="issueFormRules" label-position="top">
             <el-form-item label="Name" prop="name">
@@ -107,7 +107,9 @@
           <el-row type="flex" justify="center">
             <el-col type="flex">
               <el-table
-                :data="addresses">
+                :data="addresses"
+                height="50vh"
+                v-loading="loadForm.loading || loadForm.loading1">
                 <el-table-column
                   label="Address"
                   width="500"
@@ -144,7 +146,7 @@
       </el-row>
     </el-main>
     <el-footer>
-      <el-link href="https://element.eleme.io" target="_blank">default</el-link>
+      <el-link href="https://github.com/bodrych/waves-regulated-tokens" target="_blank">Github</el-link>
     </el-footer>
   </el-container>
 </template>
@@ -237,7 +239,7 @@
         });
       },
       resetForm: function (formName) {
-        this.$refs[formName].resetFields();
+        this.$refs[formName].resetFields()
       },
       setStatus: function (type, message, duration) {
         // this.status = text
@@ -455,13 +457,13 @@
     display: flex;
     align-items: center;
     /*justify-content: center;*/
-    border-bottom: 1px solid whitesmoke;
+    border-bottom: 1px solid #EBEEF5;
   }
   .el-footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top: 1px solid whitesmoke;
+    border-top: 1px solid #EBEEF5;
   }
   .title {
     font-size: 1.25rem;
