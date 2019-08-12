@@ -215,7 +215,7 @@
       }
     },
     created: function () {
-      document.addEventListener('DOMContentLoaded', this.checkKeeper)
+      window.addEventListener('load', this.checkKeeper)
     },
     mounted: function () {
       if (localStorage.currentAsset) {

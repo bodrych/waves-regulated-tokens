@@ -2,5 +2,7 @@
 module.exports = {
   // productionSourceMap: false,
 	// runtimeCompiler: true,
-	publicPath: './'
+	publicPath: './',
+	// crossorigin: 'anonymous',
+	// integrity: true
 }
