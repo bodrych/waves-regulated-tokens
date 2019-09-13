@@ -2,7 +2,7 @@
 {-# CONTENT_TYPE EXPRESSION #-}
 {-# SCRIPT_TYPE ASSET #-}
 
-let dApp = Address(base58'3N72v3ni92ZeJDqvRvxmYvJ69Vvr9ma5Ndn')
+let dApp = "3PQEoRrRrrrrN5DVCerPBM4Tzz5qnEWzbo7".addressFromString().value()
 
 match tx {
     case t:TransferTransaction =>
@@ -22,5 +22,5 @@ match tx {
             case _ => false
         }
         senderAccepted || e.sellOrder.sender == this.issuer
-    case _ => true # dev
+    case _ => false
 }
